@@ -1,0 +1,38 @@
+<odoo>
+  <data>
+    <template id="s_website_bar_chart_config" name="Bar Chart Config">
+      <form>
+        <div class="form-group">
+          <label for="date_range">Select Days</label>
+          <select class="form-control" name="date_range" id="date_range">
+            <option value="last_30_days">Last 30 Days</option>
+            <option value="last_60_days">Last 60 Days</option>
+            <option value="last_365_days">Last 365 Days</option>
+            <option value="last_1700_days">Last 1700 Days</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="day_frequency">Frequency</label>
+          <select class="form-control" name="day_frequency" id="day_frequency">
+            <option value="daily">Daily</option>
+            <option value="weekly">Weekly</option>
+            <option value="monthly">Monthly</option>
+            <option value="quarterly">Quarterly</option>
+            <option value="yearly">Yearly</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="erp_model_field">Select Model</label>
+          <select class="form-control" name="erp_model_field" id="erp_model_field">
+            <option value="">--Select Model--</option>
+            <t t-foreach="models" t-as="model">
+              <option t-att-value="model.id">
+                <t t-esc="model.name" />
+              </option>
+            </t>
+          </select>
+        </div>
+      </form>
+    </template>
+  </data>
+</odoo>

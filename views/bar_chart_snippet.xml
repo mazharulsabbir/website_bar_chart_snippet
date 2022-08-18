@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="s_website_bar_chart" name="Bar Chart Snippet">
+        <section class="s_website_bar_chart_section p-3">
+            <div class="container text-center">
+                <h2>Website Bar Chart</h2>
+            </div>
+        </section>
+    </template>
+
+    <template id="s_website_bar_chart_snippet_options" inherit_id="website.snippet_options">
+        <xpath expr="." position="inside">
+            <!-- data selector will be used to call the js file -->
+            <!-- template id contains the same name as data selector to call the js -->
+            <div data-js="s_bar_chart_js" data-selector=".s_website_bar_chart_section"/>
+        </xpath>
+    </template>
+
+    <template id="snippets" inherit_id="website.snippets" name="website_bar_chart snippets">
+        <xpath expr="//div[@id='snippet_effect']/div[hasclass('o_panel_body')]" position="inside">
+            <t t-snippet="website_bar_chart_snippet.s_website_bar_chart" />
+        </xpath>
+    </template>
+
+</odoo>

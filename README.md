@@ -1,0 +1,1 @@
+python ./odoo-bin -d snippet -c odoo.conf -u snippet_example   

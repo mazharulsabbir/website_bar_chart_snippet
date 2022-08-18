@@ -1,0 +1,10 @@
+<odoo>
+    <data>
+        <template id="website_bar_chart_view" name="modules">
+            <section class="s_media_list pt32 pb32 o_colored_level">
+                <div class="container">
+                </div>
+            </section>
+        </template>
+    </data>
+</odoo>
