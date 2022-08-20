@@ -5,20 +5,20 @@
         <div class="form-group">
           <label for="date_range">Select Days</label>
           <select class="form-control" name="date_range" id="date_range">
-            <option value="last_30_days">Last 30 Days</option>
-            <option value="last_60_days">Last 60 Days</option>
-            <option value="last_365_days">Last 365 Days</option>
-            <option value="last_1700_days">Last 1700 Days</option>
+            <option value="30">Last 30 Days</option>
+            <option value="60">Last 60 Days</option>
+            <option value="365">Last 365 Days</option>
+            <option value="1700">Last 1700 Days</option>
           </select>
         </div>
         <div class="form-group">
           <label for="day_frequency">Frequency</label>
           <select class="form-control" name="day_frequency" id="day_frequency">
-            <option value="daily">Daily</option>
-            <option value="weekly">Weekly</option>
-            <option value="monthly">Monthly</option>
-            <option value="quarterly">Quarterly</option>
-            <option value="yearly">Yearly</option>
+            <option value="day">Daily</option>
+            <option value="week">Weekly</option>
+            <option value="month">Monthly</option>
+            <option value="quarter">Quarterly</option>
+            <option value="year">Yearly</option>
           </select>
         </div>
         <div class="form-group">
