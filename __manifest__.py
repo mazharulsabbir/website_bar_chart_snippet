@@ -41,8 +41,4 @@
             'website_bar_chart_snippet/static/src/js/bar_chart.js',
         ]
     },
-    # only loaded in demonstration mode
-    'demo': [
-        'demo/demo.xml',
-    ],
 }

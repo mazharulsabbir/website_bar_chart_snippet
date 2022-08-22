@@ -23,7 +23,7 @@ class WebsiteGraphSnippetController(http.Controller):
         if not model_id or not date_range or not day_frequency:
             return False
 
-        data_diff = datetime.now()-timedelta(days=int(date_range))
+        data_diff = datetime.now() - timedelta(days=int(date_range))
         least_date = data_diff.strftime(r'%Y-%m-%d 23:59:59')
 
         graph_config = request.env['wbcs.graph_config'].sudo().search(
@@ -42,24 +42,25 @@ class WebsiteGraphSnippetController(http.Controller):
             ('create_date', '<=', datetime.now())
         ]
 
-        count_records = []
-        count_label = []
+        count_records = {}
+        labels = []
+
         for field in graph_config.count_field_ids:
             groups = request.env[graph_config.model_id.model].read_group(
-                domain, [field.name+":count"], ['create_date:'+day_frequency]
+                domain, [field.name + ":count"], ['create_date:' + day_frequency]
             )
             print(groups)
-            # groups_count_mapping = dict((str(g[field.name+'count']), str(g['create_date'])) for g in groups)
+
             data = {d['create_date_count'] for d in groups}
-            labels = {d['create_date:'+day_frequency] for d in groups}
-            count_records.extend(data)
-            count_label.extend(labels)
+            label = {d['create_date:' + day_frequency] for d in groups}
+            # count_records[label] = data
+            if label not in labels:
+                labels.append(label)
 
         sum_records = []
-        sum_label = []
         for field in graph_config.sum_field_ids:
             groups = request.env[graph_config.model_id.model].read_group(
-                domain, [field.name+':sum'], ['create_date:'+day_frequency]
+                domain, [field.name + ':sum'], ['create_date:' + day_frequency]
             )
             print(groups)
             # data = [{
@@ -67,15 +68,16 @@ class WebsiteGraphSnippetController(http.Controller):
             #     "create_date": d['create_date']
             # } for d in groups]
             data = {d['create_date_count'] for d in groups}
-            labels = {d['create_date:'+day_frequency] for d in groups}
-
             sum_records.extend(data)
-            sum_label.extend(labels)
+
+            label = {d['create_date:' + day_frequency] for d in groups}
+            if label not in labels:
+                labels.append(label)
 
         temp = request.env['ir.ui.view']._render_template(
             'website_bar_chart_snippet.website_bar_chart_view'
         )
-        labels = count_label+sum_label
+
         labels = sorted(labels)
         print(labels)
         return {'template': temp, 'dataset': [count_records, sum_records], 'labels': labels}

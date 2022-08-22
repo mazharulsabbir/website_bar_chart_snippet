@@ -53,11 +53,11 @@ odoo.define('website_bar_chart_snippet.popular_course_options', function (requir
             // });
         },
         _submitData: function (ev) {
-            var dateRange = this.dialog.$el.find("#date_range").val();
-            var dayFrequency = this.dialog.$el.find("#day_frequency").val();
-            var model_id = this.dialog.$el.find("#erp_model_field").val();
+            const dateRange = this.dialog.$el.find("#date_range").val();
+            const dayFrequency = this.dialog.$el.find("#day_frequency").val();
+            const model_id = this.dialog.$el.find("#erp_model_field").val();
 
-            if (model_id == undefined || model_id == "") {
+            if (model_id === undefined || model_id === "") {
                 alert("Please select model!")
             } else {
                 var json_data = {
